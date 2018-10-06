@@ -40,10 +40,17 @@ class TrialItem extends Component {
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-10">
-            <p className="lead">{trial.title}</p>
-            <p className="lead">Condition: {trial.condition}</p>
-            <p className="lead">Location: {trial.location}</p>
-            <p className="lead">
+            <h3>
+              <b>{trial.title}</b>
+            </h3>
+            <h3>
+              <b>Condition: {trial.condition}</b>
+            </h3>
+            <h3>
+              <b>Location: {trial.location}</b>
+            </h3>
+            <p>{trial.description}</p>
+            <p>
               <a href={trial.moredetaillink}> Details: </a>
             </p>
             {showActions ? (

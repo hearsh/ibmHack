@@ -24,7 +24,9 @@ class Trials extends Component {
       <div className="feed">
         <div className="container">
           <div className="row">
-            <h1 className="display-4">Trial Feed:</h1>
+            <h3 className="display-7">
+              Hi, you matched with these clinical trials !
+            </h3>
             <div className="col-md-12">{trialContent}</div>
           </div>
         </div>
