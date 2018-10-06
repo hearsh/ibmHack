@@ -29,13 +29,38 @@ router.get("/", (req, res) => {
 // @route   GET api/trials/:id
 // @desc    Get trial by id
 // @access  Public
-router.get("/:id", (req, res) => {
+router.get("/findid", (req, res) => {
   Trial.findById(req.params.id)
     .then(trial => res.json(trial))
     .catch(err =>
-      res.status(404).json({ notrialfound: "No trial found with that ID" })
+      res.status(404).json({ notrialfound: "No trial found with that ID...." })
     );
 });
+
+// @route   GET api/trials/filter
+// @desc    Filter Feed
+// @access  Private
+/*
+router.get(
+  "/filter",
+  //fipassport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("Looking for all ages");
+    const profile = Profile.findOne({user: req.user.id});
+    console.log("Looking for age ", profile.age);
+    console.log("DEBUG Trial=", Trial);
+
+    Trial.findOne().forEach(function(trial) {
+    /*
+    Trial.find().forEach(function(trial) {
+      trial.find().forEach(function(inclusion) {
+        inclusion.find().forEach(function(age) {
+          console.log(age);
+        });
+      });
+    });
+  }
+);*/
 
 // @route   POST api/trials
 // @desc    Create trial

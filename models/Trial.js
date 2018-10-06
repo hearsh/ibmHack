@@ -32,6 +32,11 @@ const TrialSchema = new Schema({
     type: String,
     required: true
   },
+  inclusion: {
+    age: {
+      type: Number
+    }
+  },
   date: {
     type: Date,
     default: Date.now

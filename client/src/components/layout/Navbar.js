@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import logo from "../../img/Logo.jpg";
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -64,7 +65,11 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            ProjectBlindMice
+            <img
+              src={logo}
+              style={{ width: "200px", margin: "auto", display: "block" }}
+              alt="Loading..."
+            />
           </Link>
           <button
             className="navbar-toggler"
