@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
@@ -96,13 +96,24 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.condition}
                 />
-                <TextFieldGroup
-                  placeholder="gender"
+                <input
+                  type="radio"
                   name="gender"
-                  value={this.state.gender}
+                  value="Male"
+                  checked={this.state.gender === "Male"}
                   onChange={this.onChange}
-                  error={errors.gender}
+                  label="M"
                 />
+                Male
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  checked={this.state.gender === "Female"}
+                  onChange={this.onChange}
+                  label="F"
+                />
+                Female
                 <TextFieldGroup
                   placeholder="age"
                   name="age"
