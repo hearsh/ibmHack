@@ -69,6 +69,7 @@ class TrialItem extends Component {
                   className="btn btn-light mr-1"
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
+                  Not Interested
                 </button>
                 {trial.user === auth.user.id ? (
                   <button
@@ -77,7 +78,7 @@ class TrialItem extends Component {
                     className="btn btn-danger mr-1"
                   >
                     <i className="fas fa-times" />
-                    Not Interested
+                    Delete
                   </button>
                 ) : null}
               </span>
