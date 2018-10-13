@@ -18,20 +18,16 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">
+                <h1 style={{ color: "black" }} className="display-3 mb-4">
                   {" "}
-                  <img
-                    src={logo}
-                    style={{ width: "800px", margin: "auto", display: "block" }}
-                    alt="Loading..."
-                  />
+                  ClinTrials
                 </h1>
                 <br />
                 <br />
                 <br />
                 <br />
                 <h1 style={{ color: "black" }}>
-                  We help children find the right clinical trials
+                  We help match Trials to Participants
                 </h1>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">

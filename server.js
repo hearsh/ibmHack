@@ -34,6 +34,10 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/trials", trials);
 
+app.use("/test", function(req, res) {
+  return res.json("Return");
+});
+
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
