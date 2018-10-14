@@ -57,6 +57,47 @@ router.get("/all", (req, res) => {
     .catch(err => res.status(404).json({ profile: "There are no profiles" }));
 });
 
+// @route   GET api/profile/interested
+// @desc    Get interested profiles
+// @access  Public
+
+router.get(
+  "/interested",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    console.log("12345");
+  }
+);
+/*
+router.get("/inter", (req, res) => {
+  console.log("1234");
+  const errors = {};
+  var createdtrials = [];
+  Trial.find()
+    .then(trials => {
+      trials.forEach(function(entry) {
+        if (entry.user.toString() === req.user.id) {
+          createdtrials.push(entry);
+        }
+      });
+      var interestedparticipants = [];
+      createdtrials.forEach(function(entry) {
+        entry.interesteds.forEach(function(participants) {
+          interestedparticipants.push(participants);
+        });
+      });
+      if (interestedparticipants.length <= 0) {
+        return res
+          .status(404)
+          .json({ notauthorized: "No interested participants found" });
+      } else {
+        res.json(interestedparticipants);
+      }
+    })
+    .catch(err => res.status(404).json({ trials: "There are no trials" }));
+});
+*/
 // @route   GET api/profile/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
