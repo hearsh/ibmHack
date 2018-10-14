@@ -37,6 +37,39 @@ router.get("/findid", (req, res) => {
     );
 });
 
+// @route   GET api/trials/:id
+// @desc    Get trial by user
+// @access  Public
+router.post("/getTrials", (req, res) => {
+  Trial.find().then(trial => {
+    let data = [];
+    trial.forEach((data) => {
+      if (data.user === req.body.id) {
+        data.push({
+          title: data.title,
+          users: data.interesteds,
+        })
+      }
+    });
+    if (data.length) {
+      res.json({
+        data: data,
+        message: 'Got the users',
+        status: 200,
+      })
+    } else {
+      res.json({
+        data: data,
+        message: 'No Intrests found with that ID',
+        status: 400,
+      })
+    }
+  }).catch(err => {
+      console.log(err);
+      res.status(404).json({ notrialfound: "No trial found with that ID...." })
+  });
+});
+
 // @route   GET api/trials/filter
 // @desc    Filter Feed
 // @access  Private

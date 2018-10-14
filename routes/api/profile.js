@@ -57,6 +57,8 @@ router.get("/all", (req, res) => {
     .catch(err => res.status(404).json({ profile: "There are no profiles" }));
 });
 
+
+
 // @route   GET api/profile/interested
 // @desc    Get interested profiles
 // @access  Public
@@ -68,7 +70,7 @@ router.get("/interested",passport.authenticate("jwt", { session: false }), (req,
   var createdtrials = [];
   Trial.find()
     .then(trials => {
-      trials.forEach(function(entry) {
+      trials.forEach((entry) => {
         if (entry.user.toString() === req.user.id) {
           createdtrials.push(entry);
         }

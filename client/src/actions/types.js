@@ -11,3 +11,4 @@ export const GET_TRIALS = "GET_TRIALS";
 export const GET_TRIAL = "GET_TRIAL";
 export const ADD_TRIAL = "ADD_TRIAL";
 export const DELETE_TRIAL = "DELETE_TRIAL";
+export const GET_INTREST = "GET_INTREST";
