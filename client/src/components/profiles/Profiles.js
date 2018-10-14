@@ -4,22 +4,26 @@ import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profileActions";
+import { getProfileIntrested } from "../../actions/profileActions";
 
 class Profiles extends Component {
   componentDidMount() {
     this.props.getProfiles();
+    let { isAuthenticated, user } = this.props.auth;
+    this.props.getProfileIntrested(user.id);
   }
 
   render() {
     const { profiles, loading } = this.props.profile;
     let profileItems;
+    let userData = this.props.userData;
 
-    if (profiles === null || loading) {
+    if (userData === null || loading) {
       profileItems = <Spinner />;
     } else {
-      if (profiles.length > 0) {
-        profileItems = profiles.map(profile => (
-          <ProfileItem key={profile._id} profile={profile} />
+      if (userData.length > 0) {
+        profileItems = userData.map(userData => (
+          <ProfileItem key={userData._id} profile={userData} />
         ));
       } else {
         profileItems = <h4>No profiles found...</h4>;
@@ -44,14 +48,17 @@ class Profiles extends Component {
 
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  getProfileIntrested: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth,
+  userData: state.profile.userData,
 });
 
 export default connect(
   mapStateToProps,
-  { getProfiles }
+  { getProfiles, getProfileIntrested }
 )(Profiles);

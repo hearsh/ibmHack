@@ -6,7 +6,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  GET_INTREST,
 } from "./types";
 
 // Get current profile
@@ -42,6 +43,21 @@ export const getProfileByHandle = handle => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
+// Get profile by intrests
+export const getProfileIntrested = id => dispatch => {
+  axios.post(`/api/trials/getTrials`, {id: id}).then((res) => {
+    dispatch({
+        type: GET_INTREST,
+        payload: res.data
+      })
+    }).catch(err =>
+      dispatch({
+        type: GET_INTREST,
         payload: null
       })
     );
