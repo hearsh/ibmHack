@@ -7,6 +7,7 @@ import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
 import { getRegisteredTrials } from "../../actions/trialActions";
 import TrialFeed from "../trials/TrialFeed";
+import TrialForm from "../trials/TrialForm";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -43,8 +44,12 @@ class Dashboard extends Component {
             <h1 className="display-4">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </h1>
+
+            {user.type === "Researcher" && <TrialForm />}
+            {user.type === "Participant" && <div>{trialContent}</div>}
+
             <div style={{ marginBottom: "60px" }} />
-            <div>{trialContent}</div>
+
             <button
               onClick={this.onDeleteClick.bind(this)}
               className="btn btn-danger"
@@ -67,9 +72,7 @@ class Dashboard extends Component {
       <div className="dashboard">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              {dashboardContent}
-            </div>
+            <div className="col-md-12">{dashboardContent}</div>
           </div>
         </div>
       </div>

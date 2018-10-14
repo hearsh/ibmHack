@@ -7,7 +7,8 @@ import {
   GET_TRIALS,
   GET_TRIAL,
   TRIAL_LOADING,
-  DELETE_TRIAL
+  DELETE_TRIAL,
+  ADD_ONE_MORE
 } from "./types";
 
 // Add Trial
@@ -15,18 +16,18 @@ export const addTrial = trialData => dispatch => {
   dispatch(clearErrors());
   axios
     .post("/api/trials", trialData)
-    .then(res =>
+    .then(res => {
       dispatch({
-        type: ADD_TRIAL,
+        type: ADD_ONE_MORE,
         payload: res.data
-      })
-    )
-    .catch(err =>
+      });
+    })
+    .catch(err => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-      })
-    );
+      });
+    });
 };
 
 // Get Trials

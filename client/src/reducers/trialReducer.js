@@ -3,12 +3,14 @@ import {
   GET_TRIALS,
   GET_TRIAL,
   DELETE_TRIAL,
-  TRIAL_LOADING
+  TRIAL_LOADING,
+  ADD_ONE_MORE
 } from "../actions/types";
 
 const initialState = {
-  trials: [],
   trial: {},
+  trials: [],
+  secrettrial: {},
   loading: false
 };
 
@@ -41,6 +43,13 @@ export default function(state = initialState, action) {
         ...state,
         trials: state.trials.filter(trial => trial._id !== action.payload)
       };
+    case ADD_ONE_MORE:
+      return {
+        ...state,
+        trials: [],
+        secrettrial: action.payload
+      };
+
     default:
       return state;
   }

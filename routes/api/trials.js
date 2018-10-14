@@ -141,7 +141,9 @@ router.post(
       newTrial.inclusion.condition = req.body.condition;
     }
 
-    newTrial.save().then(trial => res.json(trial));
+    newTrial.save().then(trial => {
+      console.log(trial), res.json(trial.data);
+    });
   }
 );
 

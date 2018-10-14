@@ -5,6 +5,11 @@ module.exports = function validateTrialInput(data) {
 
   //If the field is Empty i want to set it as a blank string
   data.title = !isEmpty(data.title) ? data.title : "";
+  data.condition = !isEmpty(data.condition) ? data.condition : "";
+  data.location = !isEmpty(data.location) ? data.location : "";
+  data.moredetaillink = !isEmpty(data.moredetaillink)
+    ? data.moredetaillink
+    : "";
 
   if (validator.isEmpty(data.title)) {
     errors.title = "title field is required";
