@@ -109,6 +109,7 @@ class Register extends Component {
                 <select
                   className="form-control"
                   name='type'
+                  onChange={this.onChange}
                  >
                     <option value=''>Select a Role</option>
                     <option value='Participant'>Participant</option>
