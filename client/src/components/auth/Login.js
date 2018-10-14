@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
@@ -50,15 +51,27 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
-
+    const styles = {
+      mainStyles: {
+        padding: '20px',
+        backgroundColor: '#fff',
+        borderRadius: '5px',
+        boxShadow: '0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.3)',
+      },
+      btn: {
+        textDecoration: 'none',
+        textAlign: 'center',
+      },
+      form: {
+        paddingBottom: '10px',
+      }
+    }
     return (
-      <div className="login">
+      <div className="login" >
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your PBM account</p>
-              <form onSubmit={this.onSubmit}>
+            <div className="col-md-6 col-lg-4 m-auto" style={styles.mainStyles}>
+              <form onSubmit={this.onSubmit} style={styles.form}>
                 <TextFieldGroup
                   placeholder="Email Address"
                   name="email"
@@ -75,8 +88,13 @@ class Login extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input value='Login' type="submit" className="btn btn-info btn-block mt-4" />
               </form>
+              <center>
+                <Link to="/register" style={styles.btn}>
+                  Sign Up
+                </Link>
+              </center>
             </div>
           </div>
         </div>
