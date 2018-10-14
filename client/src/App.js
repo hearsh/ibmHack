@@ -22,6 +22,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import NotFound from "./components/not-found/NotFound";
 import Trials from "./components/trials/Trials";
+import Background from "./components/layout/background";
 
 import "./App.css";
 
@@ -52,6 +53,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
+            <Background/>
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">

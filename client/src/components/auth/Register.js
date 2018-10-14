@@ -13,6 +13,7 @@ class Register extends Component {
       email: "",
       password: "",
       password2: "",
+      type: "",
       errors: {}
     };
 
@@ -43,7 +44,8 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      type: this.state.type,
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -54,13 +56,23 @@ class Register extends Component {
   render() {
     const { errors } = this.state;
 
+    const styles = {
+      mainStyles: {
+        padding: '20px',
+        backgroundColor: '#fff',
+        borderRadius: '5px',
+        boxShadow: '0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.3)',
+      },
+    }
     return (
       <div className="register">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
+            <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your PBM account</p>
+            </div>
+            <div className="col-md-6 m-auto" style={styles.mainStyles}>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Name"
@@ -94,7 +106,16 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <select
+                  className="form-control"
+                  name='type'
+                 >
+                    <option value=''>Select a Role</option>
+                    <option value='Participant'>Participant</option>
+                    <option value='Researcher'>Researcher</option>
+                 </select>
+                 {errors.type && <div className="invalid-feedback" style={{display: 'initial',}}>{errors.type}</div>}
+                <input type="submit" value='Sign Up' className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>

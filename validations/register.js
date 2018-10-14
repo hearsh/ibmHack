@@ -5,6 +5,7 @@ module.exports = function validateRegisterInput(data) {
 
   //If the field is Empty i want to set it as a blank string
   data.name = !isEmpty(data.name) ? data.name : "";
+  data.type = !isEmpty(data.type) ? data.type : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
@@ -39,6 +40,10 @@ module.exports = function validateRegisterInput(data) {
 
   if (!validator.equals(data.password, data.password2)) {
     errors.password2 = "Passwords must match";
+  }
+
+  if (!validator.isEmpty(data.type)) {
+    errors.type = "Please select a role";
   }
 
   return {
