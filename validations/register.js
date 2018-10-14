@@ -42,7 +42,7 @@ module.exports = function validateRegisterInput(data) {
     errors.password2 = "Passwords must match";
   }
 
-  if (!validator.isEmpty(data.type)) {
+  if (validator.isEmpty(data.type)) {
     errors.type = "Please select a role";
   }
 

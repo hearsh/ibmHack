@@ -40,9 +40,9 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">
+            <h1 className="display-4">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
+            </h1>
             <div style={{ marginBottom: "60px" }} />
             <div>{trialContent}</div>
             <button
@@ -68,7 +68,6 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
               {dashboardContent}
             </div>
           </div>
