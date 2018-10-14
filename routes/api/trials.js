@@ -40,27 +40,72 @@ router.get("/findid", (req, res) => {
 // @route   GET api/trials/filter
 // @desc    Filter Feed
 // @access  Private
-/*
+
 router.get(
   "/filter",
-  //fipassport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("Looking for all ages");
-    const profile = Profile.findOne({user: req.user.id});
-    console.log("Looking for age ", profile.age);
-    console.log("DEBUG Trial=", Trial);
-
-    Trial.findOne().forEach(function(trial) {
-    /*
-    Trial.find().forEach(function(trial) {
-      trial.find().forEach(function(inclusion) {
-        inclusion.find().forEach(function(age) {
-          console.log(age);
-        });
-      });
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Trial.find()
+        .then(trials => {
+          var filteredtrials = [];
+          trials.forEach(function(entry) {
+            if (
+              entry.inclusion &&
+              entry.inclusion.age === profile.age &&
+              entry.inclusion.gender === profile.gender &&
+              entry.inclusion.condition === profile.condition
+            ) {
+              filteredtrials.push(entry);
+            }
+          });
+          if (filteredtrials.length <= 0) {
+            return res.status(404).json({ notauthorized: "No trials found" });
+          } else {
+            res.json(filteredtrials);
+          }
+        })
+        .catch(err =>
+          res.status(404).json({ trialnotfound: "No trial found" })
+        );
     });
   }
-);*/
+);
+
+// @route   GET api/trials/registered
+// @desc    Registered Feed
+// @access  Private
+
+router.get(
+  "/registered",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Trial.find()
+        .then(trials => {
+          var filteredtrials = [];
+          trials.forEach(function(entry) {
+            entry.interesteds.forEach(function(participant) {
+              if (
+                profile.user.toString().trim() ===
+                participant.user.toString().trim()
+              ) {
+                filteredtrials.push(entry);
+              }
+            });
+          });
+          if (filteredtrials.length <= 0) {
+            return res.status(404).json({ notauthorized: "No trials found" });
+          } else {
+            res.json(filteredtrials);
+          }
+        })
+        .catch(err =>
+          res.status(404).json({ trialnotfound: "No trial found" })
+        );
+    });
+  }
+);
 
 // @route   POST api/trials
 // @desc    Create trial
@@ -85,6 +130,16 @@ router.post(
       user: req.user.id,
       moredetaillink: req.body.moredetaillink
     });
+    newTrial.inclusion = {};
+    if (req.body.age) {
+      newTrial.inclusion.age = req.body.age;
+    }
+    if (req.body.gender) {
+      newTrial.inclusion.gender = req.body.gender;
+    }
+    if (req.body.condition) {
+      newTrial.inclusion.condition = req.body.condition;
+    }
 
     newTrial.save().then(trial => res.json(trial));
   }
