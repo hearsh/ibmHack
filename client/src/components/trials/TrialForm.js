@@ -132,10 +132,12 @@ class TrialForm extends Component {
                 />
               </div>
               <div className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="Number"
-                  placeholder="Enter Age"
+                <TextFieldGroup
+                  placeholder="Enter the Age"
+                  name="age"
+                  value={this.state.age}
+                  onChange={this.onChange}
+                  error={errors.age}
                 />
               </div>
               <button type="submit" className="btn btn-dark">
